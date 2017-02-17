@@ -1,0 +1,14 @@
+﻿Build started 2/17/2017 12:03:48 AM.
+     1>Project "C:\Graficas por computadora\ray-tracing-ceides9497\RayTracing\RayTracing\RayTracing.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt RGB.cpp
+         RGB.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Graficas por computadora\ray-tracing-ceides9497\RayTracing\Debug\RayTracing.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Graficas por computadora\ray-tracing-ceides9497\RayTracing\Debug\RayTracing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Graficas por computadora\ray-tracing-ceides9497\RayTracing\Debug\RayTracing.lib" /MACHINE:X86 Debug\RGB.obj
+     1>MSVCRTD.lib(crtexe.obj) : error LNK2019: unresolved external symbol _main referenced in function ___tmainCRTStartup
+     1>C:\Graficas por computadora\ray-tracing-ceides9497\RayTracing\Debug\RayTracing.exe : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "C:\Graficas por computadora\ray-tracing-ceides9497\RayTracing\RayTracing\RayTracing.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.55
