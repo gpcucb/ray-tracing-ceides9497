@@ -12,7 +12,7 @@ int main(){
 	Vector vPrueba;
 	Rayo rayo(v1,v2);
 	//inicioalizaciones para camara
-	Vector eje(0, 0, 0);
+	Vector eje(5, 8, 20);
 	Vector center(4, 10, 8);
 	Vector up(2,5,9);
 	Camara camara(eje,center,up);
@@ -58,6 +58,13 @@ int main(){
 	camara.getCenter().show();
 	cout << "up -> ";
 	camara.getUp().show();
+	cout << "VectorW -> ";
+	camara.calculandoVectorW().show();
+	cout << "VectorU -> ";
+	camara.calculandoVectorU().show();
+	cout << "VectorV -> ";
+	camara.calculandoVectorV().show();
+
 
 	return 0;
 }

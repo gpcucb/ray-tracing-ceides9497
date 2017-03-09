@@ -17,9 +17,11 @@ public:
 	void setEje(Vector eje){ this->eje = eje; }
 	void setCenter(Vector eje){ this->center = center; }
 	void setUp(Vector eje){ this->up = up; }
-	Vector sacandoVectorW();
-	Vector sacandoVectorU();
-	Vector sacandoVectorV();
+	Vector calculandoVectorW();
+	Vector calculandoVectorU();
+	Vector calculandoVectorV();
+	float calculandoDireccionDelRayo(float i, float j, float nx, float ny);
+
 };
 
 #endif

@@ -17,21 +17,26 @@ Camara::~Camara()
 {
 }
 
-Vector Camara::sacandoVectorW(){
+Vector Camara::calculandoVectorW(){
 	float x, y, z;
-	x = this->eje.getX() / this->eje.modulo();
-	y = this->eje.getY() / this->eje.modulo();
-	z = this->eje.getZ() / this->eje.modulo();
+	Vector d = this->eje.resta(this->center);
+	x = d.getX() / d.modulo();
+	y = d.getY() / d.modulo();
+	z = d.getZ() / d.modulo();
 	return Vector(x, y, z);
 }
 
-Vector Camara::sacandoVectorU(){
-	Vector productoVectorial;
+Vector Camara::calculandoVectorU(){
+	Vector productoVectorialUpxW;
 	float x, y, z;
-	productoVectorial = this->up.productoVectorial(sacandoVectorW());
-	x = this->eje.getX() / this->eje.modulo();
-	y = this->eje.getY() / this->eje.modulo();
-	z = this->eje.getZ() / this->eje.modulo();
+	productoVectorialUpxW = this->up.productoVectorial(calculandoVectorW());
+	x = productoVectorialUpxW.getX() / productoVectorialUpxW.modulo();
+	y = productoVectorialUpxW.getY() / productoVectorialUpxW.modulo();
+	z = productoVectorialUpxW.getZ() / productoVectorialUpxW.modulo();
 	return Vector(x, y, z);
+}
+
+Vector Camara::calculandoVectorV(){
+	return calculandoVectorW().productoVectorial(calculandoVectorU());
 }
 
