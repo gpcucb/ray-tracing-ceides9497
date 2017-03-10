@@ -11,7 +11,7 @@ private:
 	float df;
 public:
 	Camara();
-	Camara(Vector eje, Vector center, Vector up);
+	Camara(Vector eje, Vector center, Vector up, float fov, float df);
 	~Camara();
 	Vector getEje(){ return this->eje; }
 	Vector getCenter(){ return this->center; }

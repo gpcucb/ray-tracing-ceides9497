@@ -5,11 +5,13 @@ Camara::Camara()
 {
 }
 
-Camara::Camara(Vector eje, Vector center, Vector up)
+Camara::Camara(Vector eje, Vector center, Vector up, float fov, float df)
 {
 	this->eje = eje;
 	this->center = center;
 	this->up = up;
+	this->fov = fov;
+	this->df = df;
 }
 
 

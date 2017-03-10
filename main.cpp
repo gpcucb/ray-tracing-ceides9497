@@ -3,19 +3,20 @@
 #include "Rayo.h"
 #include "Camara.h"
 
-int main(){
+/*todas mis pruebas al desarrollar
+void pruebas(){
 	//inicializacones
 	RGB rgb;
 	RGB rgb_lleno(12.343, 123.23, 342.342);
 	Vector v1(13.12, 25.26, 45.10);
 	Vector v2(24.10, 13.58, 81.78);
 	Vector vPrueba;
-	Rayo rayo(v1,v2);
+	Rayo rayo(v1, v2);
 	//inicioalizaciones para camara
 	Vector eje(5, 8, 20);
 	Vector center(4, 10, 8);
-	Vector up(2,5,9);
-	Camara camara(eje,center,up);
+	Vector up(2, 5, 9);
+	Camara camara(eje, center, up);
 
 	//RGB Pruebas
 	cout << "---------RGB pruebas------" << endl;
@@ -40,7 +41,7 @@ int main(){
 	cout << "Modulo V1 = " << v1.modulo() << endl;
 	cout << "Modulo V2 = " << v2.modulo() << endl;
 
-	cout << "Producto escalar V1.V2 = "<< v1.productoEscalar(v2)<<endl;
+	cout << "Producto escalar V1.V2 = " << v1.productoEscalar(v2) << endl;
 
 	cout << "Producto vectorial V1xV2 ->";
 	vPrueba = v1.productoVectorial(v2);
@@ -64,6 +65,26 @@ int main(){
 	camara.calculandoVectorU().show();
 	cout << "VectorV -> ";
 	camara.calculandoVectorV().show();
+}*/
+
+int main(){
+	Vector eje(1, 2, -6);
+	Vector center(1, 2, -4);
+	Vector	up(0, 1, 0);
+	float	fov = 39.0;
+	float	df = 1.0;
+	float	nx = 640.0;
+	float	ny = 480.0;
+
+	Camara camara(eje, center, up, fov, df);
+
+	for (int i = 0; i < nx; i++)
+	{
+		for (int j = 0; j < ny; j++)
+		{
+			camara.calculandoDireccionDelRayo(i, j, nx, ny).show();
+		}
+	}
 
 
 	return 0;
