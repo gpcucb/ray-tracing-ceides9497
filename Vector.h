@@ -1,6 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 #include <iostream>
+#include <math.h>  
 using namespace std;
 class Vector
 {
@@ -24,6 +25,7 @@ public:
 	int modulo();
 	Vector productoVectorial(Vector v);
 	float productoEscalar(Vector v);
+	Vector productoVectorPorNumero(float numero);
 };
 
 #endif

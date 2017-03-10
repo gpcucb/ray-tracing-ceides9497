@@ -7,6 +7,8 @@ private:
 	Vector eje;
 	Vector center;
 	Vector up;
+	float fov;
+	float df;
 public:
 	Camara();
 	Camara(Vector eje, Vector center, Vector up);
@@ -20,8 +22,9 @@ public:
 	Vector calculandoVectorW();
 	Vector calculandoVectorU();
 	Vector calculandoVectorV();
-	float calculandoDireccionDelRayo(float i, float j, float nx, float ny);
-
+	Vector calculandoDireccionDelRayo(float i, float j, float nx, float ny);
+	float calcularT();
+	float calcularR(float nx, float ny);
 };
 
 #endif

@@ -55,3 +55,11 @@ float Vector::productoEscalar(Vector v){
 	k = this->z*v.z;
 	return i+j+k;
 }
+
+Vector Vector::productoVectorPorNumero(float numero){
+	float x, y, z;
+	x = this->x*numero;
+	y = this->y*numero;
+	z = this->z*numero;
+	return Vector(x, y, z);
+}

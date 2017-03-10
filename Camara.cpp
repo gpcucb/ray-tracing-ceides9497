@@ -40,3 +40,29 @@ Vector Camara::calculandoVectorV(){
 	return calculandoVectorW().productoVectorial(calculandoVectorU());
 }
 
+Vector Camara::calculandoDireccionDelRayo(float i, float j, float nx, float ny){
+	float t, r, l, b, u, v;
+	Vector dw, uu, vv;
+	t = calcularT();
+	r = calcularR(nx, ny);
+	b = -t;
+	l = -r;
+
+	u = l + ((r - l)*(i + 0.5)) / nx;
+	v = b + ((t - b)*(j + 0.5)) / ny;
+
+	dw = calculandoVectorW().productoVectorPorNumero(-df);
+	uu = calculandoVectorU().productoVectorPorNumero(u);
+	vv = calculandoVectorV().productoVectorPorNumero(v);
+
+	return (dw.suma(uu)).suma(vv);
+}
+
+float Camara::calcularT(){
+	return this->df * tan(this->fov/2);
+}
+
+float Camara::calcularR(float nx, float ny){
+	return (calcularT() - nx) / ny;
+}
+
