@@ -61,7 +61,7 @@ Vector Camara::calculandoDireccionDelRayo(float i, float j, float nx, float ny){
 }
 
 float Camara::calcularT(){
-	return this->df * tan(this->fov/2);
+	return this->df * tan(((this->fov)*pi / 180) / 2);
 }
 
 float Camara::calcularR(float nx, float ny){
