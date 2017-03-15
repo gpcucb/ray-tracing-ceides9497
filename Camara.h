@@ -4,21 +4,21 @@
 class Camara
 {
 private:
-	Vector eje;
+	Vector eye;
 	Vector center;
 	Vector up;
 	float fov;
 	float df;
 public:
 	Camara();
-	Camara(Vector eje, Vector center, Vector up, float fov, float df);
+	Camara(Vector eye, Vector center, Vector up, float fov, float df);
 	~Camara();
-	Vector getEje(){ return this->eje; }
+	Vector getEje(){ return this->eye; }
 	Vector getCenter(){ return this->center; }
 	Vector getUp(){ return this->up; }
-	void setEje(Vector eje){ this->eje = eje; }
-	void setCenter(Vector eje){ this->center = center; }
-	void setUp(Vector eje){ this->up = up; }
+	void setEje(Vector eye){ this->eye = eye; }
+	void setCenter(Vector center){ this->center = center; }
+	void setUp(Vector up){ this->up = up; }
 	Vector calculandoVectorW();
 	Vector calculandoVectorU();
 	Vector calculandoVectorV();

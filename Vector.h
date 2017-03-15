@@ -3,7 +3,7 @@
 #include <iostream>
 #include <math.h>  
 using namespace std;
-#define pi 3.1415926535897932384626433832795
+#define pi 3.14159
 class Vector
 {
 private:

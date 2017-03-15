@@ -5,9 +5,9 @@ Camara::Camara()
 {
 }
 
-Camara::Camara(Vector eje, Vector center, Vector up, float fov, float df)
+Camara::Camara(Vector eye, Vector center, Vector up, float fov, float df)
 {
-	this->eje = eje;
+	this->eye = eye;
 	this->center = center;
 	this->up = up;
 	this->fov = fov;
@@ -21,7 +21,7 @@ Camara::~Camara()
 
 Vector Camara::calculandoVectorW(){
 	float x, y, z;
-	Vector d = this->eje.resta(this->center);
+	Vector d = this->eye.resta(this->center);
 	x = d.getX() / d.modulo();
 	y = d.getY() / d.modulo();
 	z = d.getZ() / d.modulo();
@@ -61,10 +61,10 @@ Vector Camara::calculandoDireccionDelRayo(float i, float j, float nx, float ny){
 }
 
 float Camara::calcularT(){
-	return this->df * tan(((this->fov)*pi / 180) / 2);
+	return this->df * tanf(((this->fov)*pi / 180) / 2);
 }
 
 float Camara::calcularR(float nx, float ny){
-	return (calcularT() - nx) / ny;
+	return (calcularT() * nx) / ny;
 }
 

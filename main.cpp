@@ -2,9 +2,10 @@
 #include "Vector.h"
 #include "Rayo.h"
 #include "Camara.h"
+#include "Esfera.h"
 
 /*todas mis pruebas al desarrollar
-void pruebas(){
+int main(){
 	//inicializacones
 	RGB rgb;
 	RGB rgb_lleno(12.343, 123.23, 342.342);
@@ -16,7 +17,7 @@ void pruebas(){
 	Vector eje(5, 8, 20);
 	Vector center(4, 10, 8);
 	Vector up(2, 5, 9);
-	Camara camara(eje, center, up);
+	Camara camara(eje, center, up, 30, 0.8);
 
 	//RGB Pruebas
 	cout << "---------RGB pruebas------" << endl;
@@ -65,27 +66,35 @@ void pruebas(){
 	camara.calculandoVectorU().show();
 	cout << "VectorV -> ";
 	camara.calculandoVectorV().show();
+	cout << "Direccion del rayo -> ";
+	camara.calculandoDireccionDelRayo(32,55,640.0,348.0).show();
+
 }*/
 
 int main(){
-	Vector e(1, 2, -6);
-	Vector center(1, 2, -4);
+	Vector e(278, 273, -800);
+	Vector center(278, 273, -700);
 	Vector	up(0, 1, 0);
-	float	fov = 39.0;
-	float	df = 1.0;
+	float	fov = 39.31;
+	float	df = 0.035;
 	float	nx = 640.0;
 	float	ny = 480.0;
 
+	Vector posicion(370, 120, 370);
+	float	radio = 120;
+
 	Camara camara(e, center, up, fov, df);
+	Esfera esfera(radio, posicion);
 
 	for (int i = 0; i < nx; i++)
 	{
 		for (int j = 0; j < ny; j++)
 		{
-			camara.calculandoDireccionDelRayo(i, j, nx, ny).show();
+			Vector dir = camara.calculandoDireccionDelRayo(i, j, nx, ny);
+			Rayo rayo(e, dir);
+			esfera.interseccion(rayo);
 		}
 	}
-
 
 	return 0;
 }
