@@ -15,7 +15,8 @@ public:
 	Vector getPosicion(){ return this->posicion; }
 	void setRadio(float radio){ this->radio = radio; }
 	void setPosicion(Vector posicion){ this->posicion = posicion; }
-	void interseccion(Rayo rayo);
+	bool interseccion(Rayo rayo,float t);
+	float getDiscriminante(float a, float b, float c);
 };
 
 #endif
