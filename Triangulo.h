@@ -12,7 +12,7 @@ public:
 	Triangulo();
 	Triangulo(Vector a, Vector b, Vector c);
 	~Triangulo();
-	void interseccion(Rayo rayo);
+	bool interseccion(Rayo rayo);
 };
 
 #endif

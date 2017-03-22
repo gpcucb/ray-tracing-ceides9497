@@ -15,7 +15,7 @@ Triangulo::~Triangulo()
 {
 }
 
-void Triangulo::interseccion(Rayo rayo){
+bool Triangulo::interseccion(Rayo rayo){
 	float t, gama, beta;
 	float a, b, c, d, e, f, g, h, i, j, k, l;
 	a = this->a.getX() - this->b.getX();
@@ -40,9 +40,18 @@ void Triangulo::interseccion(Rayo rayo){
 
 	m = a*(e*i - h*f) + b*(g*f - d*i) + c*(d*h - e*g);
 
-	beta = (j*(e*i - h*f) + k*(g*f - d*i) + l*(d*h - e*g)) / m;
-	gama = (i*(a*k - j*b) + h*(j*c - a*l) + g*(b*l - k*c)) / m;
 	t = -1 * ((f*(a*k - j*b) + e*(j*c - a*l) + d*(b*l - k*c)) / m);
+	//if ((t<t0) || (t>t1))
+	//	return false;
+	gama = (i*(a*k - j*b) + h*(j*c - a*l) + g*(b*l - k*c)) / m;
+	if ((gama < 0) || (gama > 1))
+		return false;
+	beta = (j*(e*i - h*f) + k*(g*f - d*i) + l*(d*h - e*g)) / m;
+	if ((beta < 0) || (beta > 1 - gama))
+		return false;
 
 	cout << "beta: "<<beta<<", gama: "<<gama<<" ,t: "<<t<<endl;
+
+	return true;
+	
 }
