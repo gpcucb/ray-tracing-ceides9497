@@ -30,6 +30,9 @@ class RayTracer < Renderer
     light_position = Vector.new(-150, 200.0, 50.0)
     @light = Light.new(light_position,light_color)
 
+    #colors
+    mediumBlue = Rgb.new(0.196078,0.196078,0.8)
+
     # Sphere values
     position = Vector.new(0,60,300)
     radius = 50
@@ -61,7 +64,7 @@ class RayTracer < Renderer
     a3 = Vector.new(220,0,360)
     b3 = Vector.new(100,-25,160)
     c3 = Vector.new(-220,0,360)
-    triangle_diffuse3 = Rgb.new(0.917647, 0.678431, 0.917647)
+    triangle_diffuse3 = mediumBlue
     triangle_specular3 = Rgb.new(1.0,1.0,1.0)
     triangle_reflection3 = 0.5
     triangle_power3 = 60
@@ -70,7 +73,7 @@ class RayTracer < Renderer
     a4 = Vector.new(-220,0,360)
     b4 = Vector.new(100,-25,160)
     c4 = Vector.new(-100,-25,160)
-    triangle_diffuse4 = Rgb.new(0.917647, 0.678431, 0.917647)
+    triangle_diffuse4 = mediumBlue
     triangle_specular4 = Rgb.new(1.0,1.0,1.0)
     triangle_reflection4 = 0.5
     triangle_power4 = 60
@@ -117,7 +120,11 @@ class RayTracer < Renderer
     return ksI.scalar_color(max**power)
   end
 
-
+  def ambientShading(object)
+    @ambientLight = Rgb.new(0.8,0.7,0.6)
+    ka = object.material.diffuse
+    return @ambientLight.multiply_color(ka)
+  end
 
   def calculate_pixel(i, j)
     e = @camera.e
@@ -141,10 +148,12 @@ class RayTracer < Renderer
       intersectionNormal = @obj_int.normal(intersectionPoint)
       lamberShadow = lamberthianShading(intersectionPoint, intersectionNormal, ray, @light, @obj_int)
       blinnPhong = blinnPhongShading(intersectionPoint, intersectionNormal, ray, @light, @obj_int)
+      ambientShadow = ambientShading(@obj_int)
       puts "lambert r:#{lamberShadow.r} g:#{lamberShadow.g} b:#{lamberShadow.b}"
       puts "blinnPhong r:#{blinnPhong.r} g:#{blinnPhong.g} b:#{blinnPhong.b}"
+      puts "ambientShadow r:#{ambientShadow.r} g:#{ambientShadow.g} b:#{ambientShadow.b}"
       #color = lamberShadow
-      color = blinnPhong.plus_color(lamberShadow)
+      color = blinnPhong.plus_color(lamberShadow).plus_color(ambientShadow)
     end
 
     return {red: color.r, green: color.g, blue: color.b}
