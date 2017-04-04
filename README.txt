@@ -1,1 +1,1 @@
-Proyecto de RayTracing en C++
+Proyecto de RayTracing en Ruby
