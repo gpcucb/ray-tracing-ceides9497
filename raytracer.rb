@@ -25,11 +25,6 @@ class RayTracer < Renderer
     df=0.035
     @camera = Camera.new(e, center, up, fov, df)
 
-    # Light Values
-    light_color = Rgb.new(1,1,1)
-    light_position = Vector.new(-150, 200.0, 50.0)
-    @light = Light.new(light_position,light_color)
-
     #colors
     mediumBlue = Rgb.new(0.196078,0.196078,0.8)
     fucsia = Rgb.new(1.0, 0.0, 1.0)
@@ -39,9 +34,17 @@ class RayTracer < Renderer
     silver = Rgb.new(0.90,0.91,0.98)
     yellow = Rgb.new(1.0, 1.0, 0)
     seaGreen = Rgb.new(0.137255,0.556863,0.419608)
+    white = Rgb.new(1,1,1)
+    aquamarine = Rgb.new(0.439216,0.858824,0.576471)
+    gold = Rgb.new(0.8,0.498039,0.196078)
+
+    # Light Values
+    light_color = white
+    light_position = Vector.new(-150, 200.0, 50.0)
+    @light = Light.new(light_position,light_color)
 
     # Sphere values
-    position = Vector.new(0,25,300)
+    position = Vector.new(0,50,280)
     radius = 25
     sphere_diffuse = fucsia
     sphere_specular =Rgb.new(1.0,1.0,1.0)
@@ -49,7 +52,7 @@ class RayTracer < Renderer
     sphere_power = 60
     sphere_material = Material.new(sphere_diffuse, sphere_reflection, sphere_specular, sphere_power)
 
-    position2 = Vector.new(50,25,300)
+    position2 = Vector.new(50,25,280)
     radius2 = 25
     sphere_diffuse2 = seaGreen
     sphere_specular2 =Rgb.new(1.0,1.0,1.0)
@@ -57,7 +60,7 @@ class RayTracer < Renderer
     sphere_power2 = 60
     sphere_material2 = Material.new(sphere_diffuse2, sphere_reflection2, sphere_specular2, sphere_power2)
 
-    position3 = Vector.new(-50,25,300)
+    position3 = Vector.new(-50,25,280)
     radius3 = 25
     sphere_diffuse3 = yellow
     sphere_specular3 =Rgb.new(1.0,1.0,1.0)
@@ -106,7 +109,7 @@ class RayTracer < Renderer
     ap = Vector.new(220,0,325)
     bp = Vector.new(100,0,160)
     cp = Vector.new(-220,0,325)
-    triangle_diffusep = mediumBlue
+    triangle_diffusep = white
     triangle_specularp = Rgb.new(1.0,1.0,1.0)
     triangle_reflectionp = 0.5
     triangle_powerp = 60
@@ -115,12 +118,33 @@ class RayTracer < Renderer
     ap1 = Vector.new(-220,0,325)
     bp1 = Vector.new(100,0,160)
     cp1 = Vector.new(-100,0,160)
-    triangle_diffusep1 = mediumBlue
+    triangle_diffusep1 = white
     triangle_specularp1 = Rgb.new(1.0,1.0,1.0)
     triangle_reflectionp1 = 0.5
     triangle_powerp1 = 60
     triangle_materialp1 = Material.new(triangle_diffusep1, triangle_reflectionp1, triangle_specularp1, triangle_powerp1)
 
+    #estandarte
+    aEst = Vector.new(0,25,280)
+    bEst = Vector.new(0,0,255)
+    cEst = Vector.new(-25,0,300)
+    triangle_diffuseEst = gold
+    triangle_specularEst = Rgb.new(1.0,1.0,1.0)
+    triangle_reflectionEst = 0.5
+    triangle_powerEst = 60
+    triangle_materialEst = Material.new(triangle_diffuseEst, triangle_reflectionEst, triangle_specularEst, triangle_powerEst)
+
+    aEst1 = Vector.new(25,0,300)
+    bEst1 = Vector.new(0,0,255)
+    cEst1 = Vector.new(0,25,280)
+    triangle_diffuseEst1 = gold
+    triangle_specularEst1 = Rgb.new(1.0,1.0,1.0)
+    triangle_reflectionEst1 = 0.5
+    triangle_powerEst1 = 60
+    triangle_materialEst1 = Material.new(triangle_diffuseEst1, triangle_reflectionEst1, triangle_specularEst1, triangle_powerEst1)
+
+
+    #llenando
     @sphere = Sphere.new(position, radius, sphere_material)
     @sphere2 = Sphere.new(position2, radius2, sphere_material2)
     @sphere3 = Sphere.new(position3, radius3, sphere_material3)
@@ -130,8 +154,10 @@ class RayTracer < Renderer
     @trianglew1 = Triangle.new(aw1, bw1, cw1, triangle_materialw1)
     @trianglep = Triangle.new(ap, bp, cp, triangle_materialp)
     @trianglep1 = Triangle.new(ap1, bp1, cp1, triangle_materialp1)
+    @estandarte = Triangle.new(aEst, bEst, cEst, triangle_materialEst)
+    @estandarte1 = Triangle.new(aEst1, bEst1, cEst1, triangle_materialEst1)
     @objects=[]
-    @objects << @trianglep1 << @trianglep << @trianglew1 << @trianglew << @triangle2 << @triangle << @sphere << @sphere2 << @sphere3
+    @objects << @trianglep1 << @trianglep << @trianglew1 << @trianglew << @triangle2 << @triangle << @estandarte << @estandarte1 << @sphere << @sphere2 << @sphere3
   end
 
   def max(number1,number2)
