@@ -1,18 +1,18 @@
 #ifndef TRIANGULO_H
 #define TRIANGULO_H
-#include "Vector.h"
-#include "Rayo.h"
-class Triangulo
+#include "Objeto.h"
+class Triangulo: public Objeto
 {
 private:
 	Vector a;
 	Vector b;
 	Vector c;
+	Material material;
 public:
-	Triangulo();
-	Triangulo(Vector a, Vector b, Vector c);
+	Triangulo(Vector a, Vector b, Vector c, Material material);
 	~Triangulo();
-	bool interseccion(Rayo rayo);
+	Interseccion calcularinterseccion(Rayo rayo, float t);
+	void show();
 };
 
 #endif

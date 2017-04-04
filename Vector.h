@@ -23,10 +23,11 @@ public:
 	void show();
 	Vector suma(Vector v);
 	Vector resta(Vector v);
-	int modulo();
+	float modulo();
 	Vector productoVectorial(Vector v);
 	float productoEscalar(Vector v);
 	Vector productoVectorPorNumero(float numero);
+	Vector normalizar();
 };
 
 #endif

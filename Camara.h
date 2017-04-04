@@ -1,6 +1,7 @@
 #ifndef CAMARA_H
 #define CAMARA_H
 #include "Vector.h"
+#include "Rayo.h"
 class Camara
 {
 private:
@@ -25,6 +26,7 @@ public:
 	Vector calculandoDireccionDelRayo(float i, float j, float nx, float ny);
 	float calcularT();
 	float calcularR(float nx, float ny);
+	Rayo crearRayo(Vector rayDirection);
 };
 
 #endif

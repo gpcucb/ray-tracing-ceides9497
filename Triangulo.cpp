@@ -1,11 +1,8 @@
 #include "Triangulo.h"
 
 
-Triangulo::Triangulo()
-{
-}
 
-Triangulo::Triangulo(Vector a, Vector b, Vector c){
+Triangulo::Triangulo(Vector a, Vector b, Vector c, Material material):Objeto(material){
 	this->a = a;
 	this->b = b;
 	this->c = c;
@@ -15,7 +12,7 @@ Triangulo::~Triangulo()
 {
 }
 
-bool Triangulo::interseccion(Rayo rayo){
+Interseccion Triangulo::calcularinterseccion(Rayo rayo, float t){
 	float t, gama, beta;
 	float a, b, c, d, e, f, g, h, i, j, k, l;
 	a = this->a.getX() - this->b.getX();
@@ -39,19 +36,28 @@ bool Triangulo::interseccion(Rayo rayo){
 	float m;
 
 	m = a*(e*i - h*f) + b*(g*f - d*i) + c*(d*h - e*g);
-
+	beta = (j*(e*i - h*f) + k*(g*f - d*i) + l*(d*h - e*g)) / m;
+	gama = (i*(a*k - j*b) + h*(j*c - a*l) + g*(b*l - k*c)) / m;
 	t = -1 * ((f*(a*k - j*b) + e*(j*c - a*l) + d*(b*l - k*c)) / m);
 	//if ((t<t0) || (t>t1))
 	//	return false;
-	gama = (i*(a*k - j*b) + h*(j*c - a*l) + g*(b*l - k*c)) / m;
-	if ((gama < 0) || (gama > 1))
-		return false;
-	beta = (j*(e*i - h*f) + k*(g*f - d*i) + l*(d*h - e*g)) / m;
-	if ((beta < 0) || (beta > 1 - gama))
-		return false;
+	bool exito = false;
+	if ((beta > 0) && (gama > 0) && ((beta + gama) < 1))
+	{
+		exito = true;
+		return Interseccion(exito, t);
+	}
+	else
+	{
+		return Interseccion(exito);
+	}
 
-	cout << "beta: "<<beta<<", gama: "<<gama<<" ,t: "<<t<<endl;
+	//cout << "beta: "<<beta<<", gama: "<<gama<<" ,t: "<<t<<endl;
 
-	return true;
 	
+	
+}
+
+void Triangulo::show(){
+	cout << "Soy un triangulo" << endl;
 }

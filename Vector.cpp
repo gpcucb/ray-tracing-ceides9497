@@ -36,7 +36,7 @@ void Vector::show(){
 	cout << "X: " << this->x << ", Y: " << this->y << ", Z: " << this->z << endl;
 }
 
-int Vector::modulo(){
+float Vector::modulo(){
 	return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 }
 
@@ -62,4 +62,8 @@ Vector Vector::productoVectorPorNumero(float numero){
 	y = this->y*numero;
 	z = this->z*numero;
 	return Vector(x, y, z);
+}
+
+Vector  Vector::normalizar(){
+	return Vector(this->x / modulo(), this->y / modulo(), this->z / modulo());
 }

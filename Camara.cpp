@@ -68,3 +68,7 @@ float Camara::calcularR(float nx, float ny){
 	return (calcularT() * nx) / ny;
 }
 
+Rayo Camara::crearRayo(Vector rayDirection)
+{
+	return Rayo(eye, rayDirection);
+}
