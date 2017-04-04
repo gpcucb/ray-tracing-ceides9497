@@ -49,4 +49,10 @@ class Vector
     z = @z * num
     return Vector.new(x, y, z)
   end
+
+  #Normalizar Vector
+ def normalize()
+   Vector.new(@x/self.mod,@y/self.mod, @z/self.mod)
+ end
+
 end
