@@ -27,7 +27,7 @@ class RayTracer < Renderer
 
     # Light Values
     light_color = Rgb.new(1,1,1)
-    light_position = Vector.new(-50, 100.0, 50.0)
+    light_position = Vector.new(-150, 200.0, 50.0)
     @light = Light.new(light_position,light_color)
 
     # Sphere values
@@ -103,6 +103,20 @@ class RayTracer < Renderer
     return kdI.scalar_color(max)
   end
 
+  def blinnPhongShading(intersectionPoint, intersectionNormal, ray, light, object)
+    n = intersectionNormal.normalize
+    v = ray.position.minus(intersectionPoint).normalize
+    l = light.position.minus(intersectionPoint).normalize
+    h = v.plus(l).normalize
+    nh = n.scalar_product(h)
+    ks = object.material.specular
+    power = object.material.power
+    ksI = ks.multiply_color(light.color)
+    max = max(0,nh)
+
+    return ksI.scalar_color(max**power)
+  end
+
 
 
   def calculate_pixel(i, j)
@@ -126,8 +140,11 @@ class RayTracer < Renderer
       intersectionPoint = ray.position.plus(ray.direction.num_product(t))
       intersectionNormal = @obj_int.normal(intersectionPoint)
       lamberShadow = lamberthianShading(intersectionPoint, intersectionNormal, ray, @light, @obj_int)
+      blinnPhong = blinnPhongShading(intersectionPoint, intersectionNormal, ray, @light, @obj_int)
       puts "lambert r:#{lamberShadow.r} g:#{lamberShadow.g} b:#{lamberShadow.b}"
-      color = lamberShadow
+      puts "blinnPhong r:#{blinnPhong.r} g:#{blinnPhong.g} b:#{blinnPhong.b}"
+      #color = lamberShadow
+      color = blinnPhong.plus_color(lamberShadow)
     end
 
     return {red: color.r, green: color.g, blue: color.b}
