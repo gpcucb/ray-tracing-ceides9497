@@ -2,9 +2,19 @@ class Rgb
   attr_accessor :r, :g, :b
 
   def initialize(r,g,b)
-    @r = r.to_f
-    @g = g.to_f
-    @b = b.to_f
+    @r = fix(r.to_f)
+    @g = fix(g.to_f)
+    @b = fix(b.to_f)
+  end
+
+  def fix(num)
+    if num<0
+      num=0
+    end
+    if num>1
+      num=1
+    end
+    return num
   end
 
   def plus_color (a_color)
